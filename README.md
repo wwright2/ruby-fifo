@@ -25,7 +25,12 @@ Writer Example:
 
 ============================
 
-##Example:
+####Example:  Creating a Debug Interface to a ruby Application
+* add a debug module
+* insert debug Callback runDebug() into serial_api -  todo: create a Debug interface to inherit from
+* main allocate debug module debugMgr
+*   add the serial_api object to the debugMgr tag as 'serial'
+*   
 
 ```
 require 'logger'
