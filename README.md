@@ -27,6 +27,7 @@ Writer Example:
 
 ##Example:
 
+```
 require 'logger'
 require 'fifo'
 
@@ -177,4 +178,4 @@ puts ARGV.class.name
 
 pipe.puts ARGV.join(",")
 
-
+```
