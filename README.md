@@ -30,7 +30,8 @@ Writer Example:
 * insert debug Callback runDebug() into serial_api -  todo: create a Debug interface to inherit from
 * main allocate debug module debugMgr
 *   add the serial_api object to the debugMgr tag as 'serial'
-*   
+* last, create debug script file for command line CLI to inject our debugs.
+* 
 
 ```
 
