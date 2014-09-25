@@ -82,9 +82,9 @@ class DebugUtil
 
     begin
       @debug_thread = Thread.new do
-        #if fifo notExist then create pipe = Fifo.new('/tmp/ccmdebug')
+        #if fifo notExist then create pipe = Fifo.new('/tmp/debug')
         if $pipe.nil?
-          $pipe = Fifo.new("/tmp/ccmdebug", :r, :wait) #blocking
+          $pipe = Fifo.new("/tmp/debug", :r, :wait) #blocking
         end
         #puts $pipe.methods
           
@@ -101,7 +101,7 @@ class DebugUtil
               puts e
               line = nil
               $pipe.close
-              $pipe = Fifo.new("/tmp/ccmdebug", :r, :wait) #blocking
+              $pipe = Fifo.new("/tmp/debug", :r, :wait) #blocking
             rescue SystemExit, Interrupt
               $pipe.close
               raise
@@ -188,7 +188,7 @@ require 'fifo'
 
 
 ## Debug Interface
-# fifo input to ccm_daemon.rb
+# fifo input to app_daemon.rb
 #  currently only serial has a runDebug() method and commands 
 # example: 
 #      ./debug subsystem cmd [params]
@@ -200,13 +200,13 @@ require 'fifo'
 # see:  cc_debug_util.rb
 
 # 
-# tail -f log/ccm_daemon.log to monitor output.
+# tail -f log/app_daemon.log to monitor output.
 
 ARGV.each do|a|
   puts "Argument: #{a}"
 end
 
-pipe = Fifo.new("/tmp/ccmdebug", :w, :wait)
+pipe = Fifo.new("/tmp/debug", :w, :wait)
 puts pipe
 
 puts ARGV.class.name
