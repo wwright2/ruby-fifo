@@ -33,13 +33,13 @@ Writer Example:
 *   
 
 ```
+
+##########################
 require 'logger'
 require 'fifo'
 
 
-# ------------------------------------------------------------------------------------
-  
-##########################
+
 # DebugUtil Class
 #  method: processFile
 class DebugUtil
