@@ -137,11 +137,40 @@ class DebugUtil
 end # class
 ================================
 
-#Application - demo
+# Application - demo
 # declare debug Manager
 $debugMgr = DebugUtil.new("debug.txt",logger)
 $debugMgr.addDebug("serial", $serial_api)
 $debugMgr.processFile()
+
+# Serial_api
+ #
+  public
+  def runDebug(args)
+    @logger.debug("runDebug: #{args}, kindof Array=#{ (args.kind_of?(Array)) ? "true" : "false"}")
+    if args.kind_of?(Array)
+      if args.length == 1
+        buffer = args.shift.split(',')
+      end
+
+      cmd = buffer.shift
+      puts "runDebug() #{cmd}"
+      
+      if cmd.casecmp("reset") == 0 
+        self.serialreset()
+      elsif cmd.casecmp("loglevel") == 0
+        self.set_log_level(buffer)
+      elsif cmd.casecmp("send") == 0
+        self.send_command(buffer.join('/')+"\n")
+      elsif cmd.casecmp("newData") == 0
+        newDataStructures()
+      elsif cmd.casecmp("dump") == 0
+        dumpDataStructures()
+      end
+    end
+  end
+
+
 
 =============================================
 
