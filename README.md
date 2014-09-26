@@ -33,9 +33,13 @@ Writer Example:
 * last, create debug script file for command line CLI to inject our debugs.
 * 
 
+
+
 ```
 
 ##########################
+# app/debug_util.rb
+
 require 'logger'
 require 'fifo'
 
@@ -141,13 +145,23 @@ class DebugUtil
 
 
 end # class
+
+
 ================================
 
 # Application - demo
+# /app/myapp.rb
+
+$serial_api = SerialApi.new()
+
 # declare debug Manager
 $debugMgr = DebugUtil.new("debug.txt",logger)
 $debugMgr.addDebug("serial", $serial_api)
 $debugMgr.processFile()
+
+
+========================================
+# /app/serial_api.rb
 
 # Serial_api
  #
@@ -181,6 +195,7 @@ $debugMgr.processFile()
 =============================================
 
 #Command line inject debug commands into application.
+# /app/debug
 
 #!/usr/bin/env ruby
 
